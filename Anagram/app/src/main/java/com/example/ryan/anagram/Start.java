@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Start extends Activity {
 
@@ -13,11 +17,17 @@ public class Start extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        TextView anagram = (TextView) findViewById(R.id.anagram);
+        anagram.setText(generateAnagram("TEST"));
+        anagram.setTextSize(72);
     }
 
+    /*
     public void buttonResultsClicked(View v) {
         startActivity(new Intent(getApplicationContext(), Results.class));
     }
+    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,5 +49,18 @@ public class Start extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private String generateAnagram(String input) {
+        ArrayList<Character> anagram = new ArrayList<>();
+        for(char letter:input.toLowerCase().toCharArray()) {
+            anagram.add(letter);
+        }
+        StringBuilder output = new StringBuilder(input.length());
+        while(anagram.size()!=0){
+            int rand = (int)(Math.random() * anagram.size());
+            output.append(anagram.remove(rand));
+        }
+        return output.toString().toUpperCase();
     }
 }
