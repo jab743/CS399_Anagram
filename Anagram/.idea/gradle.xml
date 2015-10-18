@@ -5,7 +5,11 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
         <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4" />
+=======
+        <option name="gradleHome" value="D:\Android Studio\gradle\gradle-2.4" />
+>>>>>>> b44122df7d7b9dac7821d09474e9c85d2328f49e
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
