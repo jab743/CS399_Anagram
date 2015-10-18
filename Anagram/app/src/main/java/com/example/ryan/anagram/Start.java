@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +19,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Start extends Activity {
 
@@ -25,12 +28,13 @@ public class Start extends Activity {
     EditText answer;
     TextView anagram;
     Button enterGuess;
+    static int score=0;
     ArrayList<String> words;
     int currentRound = 1;
     int totalRounds = 10;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
@@ -38,7 +42,6 @@ public class Start extends Activity {
             initializeWords(this);
         } catch (Exception e) {
             words = new ArrayList<>();
-            //noinspection ThrowablePrintedToSystemOut
             System.out.println(e);
         }
 
@@ -51,6 +54,7 @@ public class Start extends Activity {
         //Initialize round counter and anagram
         roundCounter.setText(currentRound + "/" + totalRounds);
         anagram.setText(generateAnagram(word));
+        anagram.setTextSize(72);
 
         enterGuess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +63,9 @@ public class Start extends Activity {
 
                     if (answer.getText().toString().toLowerCase().equals(word.toLowerCase())) {     //Check if inputted guess is correct
                         anagram.setText("SUCCESS");
+                        score++;
                     } else {
-                        anagram.setText("INCORRECT\n" + word);
+                        anagram.setText("INCORRECT\n"+word);
                     }
                     nextRound();                                                                    //Set button to NEXT ROUND mode
 
@@ -102,6 +107,7 @@ public class Start extends Activity {
             enterGuess.setText("SEE RESULTS");
         } else {
             enterGuess.setText("NEXT ROUND");
+            word = getWord();
         }
     }
 
@@ -146,5 +152,10 @@ public class Start extends Activity {
 
     private String getWord() {
         return words.get((int) Math.round(Math.random() * (words.size() - 1)));
+    }
+
+    public static int getScore(){
+        int finalScore = score;
+        return finalScore;
     }
 }

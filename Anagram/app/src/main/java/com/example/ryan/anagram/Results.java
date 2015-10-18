@@ -6,13 +6,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.example.ryan.anagram.Start;
 
 public class Results extends Activity {
+    TextView textScore;
+    int score = Start.getScore();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        textScore = (TextView) findViewById(R.id.textScore);
+        textScore.setText(Integer.toString(score));
     }
 
     public void buttonStartClicked(View v) {
