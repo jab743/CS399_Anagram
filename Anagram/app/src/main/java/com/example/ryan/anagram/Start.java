@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +17,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Start extends Activity {
 
@@ -41,6 +38,7 @@ public class Start extends Activity {
             initializeWords(this);
         } catch (Exception e) {
             words = new ArrayList<>();
+            //noinspection ThrowablePrintedToSystemOut
             System.out.println(e);
         }
 
@@ -53,7 +51,6 @@ public class Start extends Activity {
         //Initialize round counter and anagram
         roundCounter.setText(currentRound + "/" + totalRounds);
         anagram.setText(generateAnagram(word));
-        anagram.setTextSize(72);
 
         enterGuess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +60,7 @@ public class Start extends Activity {
                     if (answer.getText().toString().toLowerCase().equals(word.toLowerCase())) {     //Check if inputted guess is correct
                         anagram.setText("SUCCESS");
                     } else {
-                        anagram.setText("INCORRECT");
+                        anagram.setText("INCORRECT\n" + word);
                     }
                     nextRound();                                                                    //Set button to NEXT ROUND mode
 
@@ -112,8 +109,8 @@ public class Start extends Activity {
         //Reset the anagram, increment round counter, set button for entering an answer
         currentRound++;
         roundCounter.setText(currentRound + "/" + totalRounds);
-
-        anagram.setText(generateAnagram(getWord()));
+        word = getWord();
+        anagram.setText(generateAnagram(word));
         answer.setText("");
         answer.setHint("Enter answer here...");
         enterGuess.setText("ENTER");

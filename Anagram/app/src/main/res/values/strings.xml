@@ -4,4 +4,17 @@
     <string name="title_activity_about">About</string>
     <string name="title_activity_start">Start</string>
     <string name="title_activity_results">Results</string>
+    <string name="Home">HOME</string>
+    <string name="Ryan">Ryan Buckingham</string>
+    <string name="Jack">Jack Burrell</string>
+    <string name="Jordan">Jordan Marshall</string>
+    <string name="Hayden">Hayden Westbrook</string>
+    <string name="Team">Team 13</string>
+    <string name="Hint">Enter answer here...</string>
+    <string name="Enter">ENTER</string>
+    <string name="Anagram">ANAGRAM</string>
+    <string name="Start">START</string>
+    <string name="About">ABOUT</string>
+    <string name="Restart">RESTART</string>
+    <string name="Home2">HOME</string>
 </resources>

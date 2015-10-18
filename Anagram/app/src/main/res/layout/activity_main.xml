@@ -8,34 +8,34 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ANAGRAM"
+        android:text="@string/Anagram"
         android:id="@+id/button"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textSize="35dp"
+        android:layout_marginTop="50sp"
+        android:textSize="35sp"
         android:background="#b6e1ff" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START"
+        android:text="@string/Start"
         android:id="@+id/button2"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:background="#b6e1ff"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="100sp"
         android:onClick="buttonStartClicked" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ABOUT"
+        android:text="@string/About"
         android:id="@+id/button3"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:background="#b6e1ff"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="35sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="buttonAboutClicked" />
