@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +17,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Start extends Activity {
 
@@ -54,7 +51,6 @@ public class Start extends Activity {
         //Initialize round counter and anagram
         roundCounter.setText(currentRound + "/" + totalRounds);
         anagram.setText(generateAnagram(word));
-        anagram.setTextSize(72);
 
         enterGuess.setOnClickListener(new View.OnClickListener() {
             @Override

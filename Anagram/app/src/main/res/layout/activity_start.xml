@@ -14,7 +14,7 @@
         android:text="Large Text"
         android:id="@+id/anagram"
         android:layout_marginTop="79sp"
-        android:textSize="50sp"
+        android:textSize="45sp"
         android:textIsSelectable="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
