@@ -2,6 +2,8 @@ package com.example.ryan.anagram;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,6 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,6 +28,7 @@ public class Start extends Activity {
     EditText answer;
     TextView anagram;
     Button enterGuess;
+    ArrayList<String> words;
     int currentRound = 1;
     int totalRounds = 10;
 
@@ -30,7 +37,14 @@ public class Start extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        word = "TEST";
+        try {
+            initializeWords(this);
+        } catch (Exception e) {
+            words = new ArrayList<>();
+            System.out.println(e);
+        }
+
+        word = getWord();
         roundCounter = (TextView) findViewById(R.id.roundCounter);
         anagram = (TextView) findViewById(R.id.anagram);
         answer = (EditText)findViewById(R.id.answer);
@@ -56,7 +70,7 @@ public class Start extends Activity {
                 } else if (enterGuess.getText().toString().equals("NEXT ROUND")) {                  //If button is in NEXT ROUND mode
                     resetGame();                                                                    //reset for next round
 
-                } else if(enterGuess.getText().toString().equals("SEE RESULTS")) {                  //If button is in SEE RESULTS mode
+                } else if (enterGuess.getText().toString().equals("SEE RESULTS")) {                  //If button is in SEE RESULTS mode
                     startActivity(new Intent(getApplicationContext(), Results.class));              //Go to results page
                 }
             }
@@ -98,7 +112,8 @@ public class Start extends Activity {
         //Reset the anagram, increment round counter, set button for entering an answer
         currentRound++;
         roundCounter.setText(currentRound + "/" + totalRounds);
-        anagram.setText(generateAnagram(word));
+
+        anagram.setText(generateAnagram(getWord()));
         answer.setText("");
         answer.setHint("Enter answer here...");
         enterGuess.setText("ENTER");
@@ -116,5 +131,23 @@ public class Start extends Activity {
             output.append(anagram.remove(rand));
         }
         return output.toString().toUpperCase();
+    }
+
+    private void initializeWords(Activity activity)
+            throws XmlPullParserException, IOException {
+         words = new ArrayList<>();
+        Resources res = activity.getResources();
+        XmlResourceParser xml = res.getXml(R.xml.words);
+        int eventType = xml.getEventType();
+        while(eventType != XmlPullParser.END_DOCUMENT) {
+            if(eventType == XmlPullParser.TEXT) {
+                words.add(xml.getText());
+            }
+            eventType = xml.next();
+        }
+    }
+
+    private String getWord() {
+        return words.get((int) Math.round(Math.random() * (words.size() - 1)));
     }
 }
