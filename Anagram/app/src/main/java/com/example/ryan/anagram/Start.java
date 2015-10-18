@@ -63,7 +63,7 @@ public class Start extends Activity {
                     if (answer.getText().toString().toLowerCase().equals(word.toLowerCase())) {     //Check if inputted guess is correct
                         anagram.setText("SUCCESS");
                     } else {
-                        anagram.setText("WRONG");
+                        anagram.setText("INCORRECT");
                     }
                     nextRound();                                                                    //Set button to NEXT ROUND mode
 
